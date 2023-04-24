@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import net.javaguides.organizationservice.dto.OrganizationDto;
 import net.javaguides.organizationservice.service.OrganizationService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class OrganizationController {
 
     }
     // Build get Organization Rest Api
-    @GetMapping("{code}")
+    @GetMapping(value ="{code}",  produces= MediaType.APPLICATION_JSON_VALUE)
     public  ResponseEntity<OrganizationDto> getOrganization(@PathVariable("code") String organizationCode){
         OrganizationDto organizationDto = organizationService.getOrganizationByCode(organizationCode);
         return ResponseEntity.ok(organizationDto);
